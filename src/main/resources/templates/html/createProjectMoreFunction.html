@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Dream</title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="/assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+    
+        <!--/. NAV TOP  -->
+        <div th:include="header :: header"></div>
+        <!-- /. NAV SIDE  -->
+        <div th:include="sidebar :: sidebar"></div>
+        
+        <div id="page-wrapper">
+            <div id="page-inner-table">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Extended Functionality
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-green">
+                                    Statistical analysis
+                                </div>
+                                  <div class="panel-body">
+                                     <form role="form">
+
+                                            <div class="form-group">
+                                               
+                                            </div>
+
+                                            <div class="form-group">
+                                                <textarea class="form-control" style="width: 70%" rows="3" id="projectInstruction" readonly="readonly">       统计分析的功能包括统计单词在文档中的频率，并画出词云。以及对文本做情感分析，词性构成比例，观点和信息提取等功能。
+                                                </textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+	                                            <label>是否进行词性分析 </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked="">Yes
+	                                            </label>
+	                                            <label class="radio-inline">
+	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">No
+	                                            </label>
+	                             
+                                       		 </div>
+                                     </form>
+                                  </div>
+                            </div>
+                        </div> 
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-blue">
+                                    Classification algorithm Selection
+                                </div>
+                                
+                                <div class="panel-body">
+                                       <div class="form-group-0">
+                                            <div class="checkbox">
+                                            	<div  >
+	                                                <label>
+	                                                    <input type="checkbox" id="KNN" name="KNN" value="" >KNN
+	                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox">
+                                            	<div style="float:left">
+	                                                <label>
+	                                                    <input type="checkbox" id="SVM" name="SVM" value="" onclick="SVM()">SVM
+	                                                </label>
+                                                </div>
+                                                 <div style="margin-left:10%;display:none" id="SVM_value">
+	                                                <label>
+	                                                    <input  id="SVM_c" name="SVM_c" value=""  placeHolder="c" style="width:14%">
+	                                                	&nbsp
+	                                                    <input  id="SVM_toler" name="SVM_toler" value=""  placeHolder="toler" style="width:14%">
+	                                                    &nbsp
+	                                                    <input  id="SVM_max" name="SVM_max" value=""  placeHolder="max_Iterations" style="width:14%">
+	                                                    &nbsp
+	                                                    <select id="SVM_select" name="SVM_select" style="width:14%" >
+			                                                <option>linear</option>
+			                                                <option>rbf</option>
+			                                                <option>poly</option>
+			                                            </select>
+			                                            <input  id="SVM_test" name="SVM_test" value="" style="width:14%;display:none">
+	                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox">
+	                                            <div style="float:left">
+		                                            <label>
+	                                                    <input type="checkbox" id="Linear_programming" name="Linear_programming" onclick="Linear_programming()">Linear regression
+	                                                </label>
+	                                            </div>
+	                                            <div style="margin-left:10%;display:none" id="Linear_value">
+	                                                <label>
+	                                                    <input  id="Linear_c" name="Linear_c" value=""  placeHolder="c" style="width:14%">
+	                                                	&nbsp
+	                                                    <input  id="Linear_toler" name="Linear_toler" value=""  placeHolder="toler" style="width:14%">
+	                                                    &nbsp
+	                                                    <input  id="Linear_max" name="Linear_max" value=""  placeHolder="max_Iterations" style="width:14%">
+	                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group-1">
+                                        	<div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="Deep_learning" name="Deep_learning" value="">Deep learning
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="Knowledge" name="Knowledge" value="">Knowledge graph based method
+                                                </label>
+                                            </div>
+                                         </div>
+                                	</div>
+                               <!--  <div class="panel-footer">
+                                    
+                                </div> -->
+                            </div>
+                        </div> 
+
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-red">
+                                   Clustering Algorithm Selection
+                                </div>
+                                <div class="panel-body">
+                                        <div class="form-group-0">
+                                            <div class="checkbox">
+	                                            <div style="float:left">
+		                                            <label>
+	                                                    <input type="checkbox" id="Kmeans" name="Kmeans" value="" onclick="Kmeans()">Kmeans
+	                                                </label>
+	                                            </div>
+	                                            
+	                                            <div style="margin-left:10%;display:none;" id="Kmeans_value">
+	                                                <label> 
+	                                                    <input  id="Kmeans_class" name="Kmeans_class" value=""  placeHolder="class" style="width:50px">
+	                                                </label>  
+                                                </div>
+                                            </div>
+                                          
+                                          
+                                        </div>
+                                </div>
+                            </div>
+                        </div> 
+
+						<div class="col-md-12">
+							<div class="panel panel-primary">
+		                        
+		                        <div class="panel-body" style="margin-left:40%;float:left">
+		                            <button class="btn btn-primary btn-lg" onclick="Finish()">
+		                              	Finish
+		                            </button>
+		                        </div>
+		                    </div>
+	                     </div>
+                        
+						<input type="hidden" name="field＿name" id="field＿name" th:value="${projectId}">
+				 		<footer><p>All right reserved. Template by: <a href="http://webthemez.com"></a></p></footer>
+				</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    
+    <script src="/js/jquery.js"></script>
+    
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="/assets/js/custom-scripts.js"></script>
+    
+    <script src="/js/createProject.js"></script>
+    <script  type="text/javascript">
+            $(function(){
+            	$('.active-menu').removeClass('active-menu');
+            	$('.pluscjj').addClass('active-menu');
+            });
+    </script>
+
+    
+   
+</body>
+
+
+</html>

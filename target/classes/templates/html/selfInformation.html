@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Dream</title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="/assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <!--/. NAV TOP  -->
+        <div th:include="header :: header"></div>
+        <!-- /. NAV SIDE  -->
+        <div th:include="sidebar :: sidebar"></div>
+        
+        <div id="page-wrapper" >
+	            <div id="page-inner-table">
+					 <div class="row">
+		                    <div class="col-md-12">
+		                        <h1 class="page-header">
+		                            	个人信息
+		                        </h1>
+		                    </div>
+		             </div> 
+		             
+		             <div class="row">
+		                  <div class="col-xs-12 col-sm-8">
+		                  	<div class="panel panel-default">
+		                       <div class= "module-container">
+		                            <div class="panel-heading">
+                                          <h3>个人信息修改</h3>
+                                    </div>
+			                           
+			                        <div class="panel-body"  style="margin-left:20%;margin-top:3%">
+			                             <div class="form-group">
+                                            <label style="width:18%">userId</label>
+                                            <input id="userId" readonly="readonly" th:value="${map.user.id}"/>
+                                         </div>
+                                         <div class="form-group">
+                                            <label style="width:18%">userName</label>
+                                            <input id="userName" readonly="readonly" th:value="${map.user.name}"/>
+                                            <button id="userName_button" data-toggle="modal" data-target="#myModal">修改</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="width:18%">password</label>
+                                            <input id="password" readonly="readonly" th:value="${map.user.password}"/>
+                                            <button id="password_button" data-toggle="modal" data-target="#myModal">修改</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="width:18%">phoneNumber</label>
+                                            <input id="phoneNumber" readonly="readonly" th:value="${map.user.phoneNumber}"/>
+                                            <button id="phoneNumber_button" data-toggle="modal" data-target="#myModal">修改</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="width:18%">mail</label>
+                                            <input  readonly="readonly" id="mail" th:value="${map.user.mail}"/>
+                                            <button id="mail_button" data-toggle="modal" data-target="#myModal">修改</button>
+                                        </div>
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                                <div class="modal-dialog">
+			                                    <div class="modal-content">
+			                                        <div class="modal-header">
+			                                            <button type="button" class="close" id="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                                            <h4 class="modal-title" id="myModalLabel">Modal title Here</h4>
+			                                        </div>
+			                                        <div class="modal-body" >
+			                                           <div id="panel_model" style="margin-left:20%">
+			                                           </div>
+			                                        </div>
+			                                        <div class="modal-footer">
+			                                            <button type="button" class="btn btn-default" data-dismiss="modal" id="dismiss">Close</button>
+			                                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="save_change">Save changes</button>
+			                                        </div>
+			                                    </div>
+			                                </div>
+                           				 </div>
+                                    </div>       
+		                       </div>
+		                     </div>
+		                  </div>
+		             </div> 
+		                 <!-- /. ROW  -->
+						 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+				</div>
+	             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    
+
+    <!-- jQuery Js -->
+    <script src="/js/jquery.js"></script>
+    
+    <!-- selfInformation Js -->
+    <script src="/js/selfInformation.js"></script>
+    
+    <script src="/js/jquery.md5.js"></script>
+    
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script>
+            $(function(){
+         
+            	$('.active-menu').removeClass('active-menu');
+            	$('.qrcodecjj').addClass('active-menu');
+            });
+    </script>
+   
+</body>
+
+
+</html>

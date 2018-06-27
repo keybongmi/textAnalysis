@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Dream</title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="/assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+    
+        <!--/. NAV TOP  -->
+        <div th:include="header :: header"></div>
+        <!-- /. NAV SIDE  -->
+        <div th:include="sidebar :: sidebar"></div>
+        
+        <div id="page-wrapper">
+            <div id="page-inner-table">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            创建项目
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-green">
+                                    系统和系统简介
+                                </div>
+                                  <div class="panel-body">
+                                     <form role="form">
+
+                                            <div class="form-group">
+                                               
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" style="width: 40%" id="projectName" type="text" placeholder="项目名称">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <textarea class="form-control" style="width: 70%" rows="3" placeholder="项目介绍" id="projectInstruction"></textarea>
+                                            </div>
+                                     </form>
+                                  </div>
+                            </div>
+                        </div> 
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-blue">
+                                    上传数据&nbsp &nbsp(您可以选择在文本框中输入一段文本，或者通过文件选择器选择.txt文件或者许多.txt文件压缩成的.rar)
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>File input</label>
+                                            <input type="file"  name="File1" id="File1"  multiple="multiple" onchange="ifItIsTxtOrRar(this)"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Text area</label>
+                                            <textarea class="form-control" rows="3" id="File2" name="File2"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                               <!--  <div class="panel-footer">
+                                    
+                                </div> -->
+                            </div>
+                        </div> 
+
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-footer back-footer-red">
+                                  Word Segmentation Tool Selection
+                                </div>
+                                <div class="panel-body">
+                                        <div class="form-group-0">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="smartChineseAnalyzer" name="smartChineseAnalyzer" value="">smartChineseAnalyzer
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="IK" name="IK" value="">IK
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="ansj" name="ansj" value="">ansj
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group-1">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="jieba" name="jieba" value="">jieba
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="hanlp" name="hanlp" value="">hanlp
+                                                </label>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div> 
+
+						<div class="col-md-12">
+							<div class="panel panel-primary">
+		                        <div class="panel-body" style="margin-left:35%;float:left;">
+		                            <button class="btn btn-primary btn-lg" onclick="check(1)">
+		                              Next Step
+		                            </button>
+		                        </div>
+		                        
+		                        <div class="panel-body" style="margin-left:3%;float:left">
+		                            <button class="btn btn-primary btn-lg" onclick="check(2)">
+		                              	Finish
+		                            </button>
+		                        </div>
+		                    </div>
+	                     </div>
+                        
+
+				 		<footer><p>All right reserved. Template by: <a href="http://webthemez.com"></a></p></footer>
+				</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/js/createProject.js"></script>
+    <script src="/js/jquery.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="/assets/js/custom-scripts.js"></script>
+    <script  type="text/javascript">
+            $(function(){
+            	$('.active-menu').removeClass('active-menu');
+            	$('.pluscjj').addClass('active-menu');
+            });
+    </script>
+
+    
+   
+</body>
+
+
+</html>

@@ -1,0 +1,57 @@
+.module-container1 {
+    height: 400px;
+    background-color: #ffffff;
+    box-shadow: 1px 2px 4px rgba(0,0,0,.1);
+    position: relative;
+}
+
+.module-container {
+    height: 400px;
+    background-color: #87CEFA;
+    box-shadow: 1px 2px 4px rgba(0,0,0,.1);
+    position: relative;
+}
+
+.module-container  .chart-container {
+    height: 230px;
+    margin: 25px;
+    overflow-y: auto;
+}
+
+.module-container1 .chart-container{
+	height: 300px;
+    margin: 25px;
+    overflow-y: auto;
+}
+
+.module-title-with-hr {
+    border-bottom: 1px solid #dadee7;
+}
+
+.module-title, .module-title-with-hr {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 15px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    margin: 0;
+    display: block;
+}
+
+.text-word {
+    position: relative;
+    cursor: default;
+    transition: background-color .3s;
+}
+
+.text-d {
+    background-color: #87CEFA;
+}
+.text {
+    display: inline-block;
+    padding: 4px 11px;
+    margin: 0 5px 5px 0;
+    font-size: 14px;
+    color: #fff;
+}

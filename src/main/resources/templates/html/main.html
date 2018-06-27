@@ -1,0 +1,164 @@
+﻿<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文本分析系统</title>
+    <!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--/. NAV TOP  -->
+        <div th:include="header :: header"></div>
+        <!-- /. NAV SIDE  -->
+        <div th:include="sidebar :: sidebar"></div>
+        
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                           	 主页 <small>文本分析系统的使用介绍</small>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+
+                <div class="row">  
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                 <div class="panel-heading">
+                                   	  系统介绍
+                                </div>
+                                <div class="panel-body">
+                                    <p>&nbsp &nbsp &nbsp &nbsp 本系统集成了6种分词工具，使用本系统时，您需要先提交数据，然后选择6种分词工具中的一种或多种，系统会自动根据您选择的分词工具产生分词结果，您可以预览或者下载这些结果。同时您还可以使用系统的附加功能，我们会根据您的选择，将数据以不同的形式展现给您。</p>
+                                </div>
+                                <div class="panel-footer">
+                                    Panel Footer
+                                </div>
+                            </div>
+                        </div>                               
+                </div> 
+				<!-- /. ROW  -->
+				
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                            <div class="panel-body">
+                                <i class="fa fa-plus fa-5x"></i>
+                                <h3></h3>
+                            </div>
+                            <div class="panel-footer back-footer-green">
+                                1. 新建项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                            <div class="panel-body">
+                                <!-- <i class="fa fa-shopping-cart fa-5x"></i> -->
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                <h3></h3>
+                            </div>
+                            <div class="panel-footer back-footer-blue">
+                                2. 上传数据
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-red">
+                            <div class="panel-body">
+                                <i class="fa fa fa-wrench fa-5x"></i>
+                                <h3></h3>
+                            </div>
+                            <div class="panel-footer back-footer-red">
+                                3. 选择分词工具
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-brown">
+                            <div class="panel-body">
+                                <i class="fa fa-users fa-5x"></i>
+                                <h3></h3>
+                            </div>
+                            <div class="panel-footer back-footer-brown">
+                                4. 分词功能扩展
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!-- /. ROW  -->
+				
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            	 操作步骤介绍
+                            </div>        
+                              
+                            <div class="panel-body"> 
+                                <div class="alert alert-success">
+                                    <strong>1.</strong> 新建一个项目，并填写项目名和项目介绍。以后上传的数据，分词结果和扩展结果都包含在这个项目中。
+                                </div>
+                                <div class="alert alert-info">
+                                    <strong>2.</strong> 上传数据集，数据集的格式可以为：一段文字、一个txt文件、多个txt文件组成的压缩包。
+                                </div>
+                                <div class="alert alert-warning">
+                                    <strong>3.</strong> 我们有多种分词工具供您选择，你可选择其中的一个或者多个，最后我们会把分词结果返回给您，您可以预览或者下载分词结果。
+                                </div>
+                                <div class="alert alert-danger">
+                                    <strong>4. </strong> 当获得分词结果之后，您还可以选择系统的扩展功能，如：获得分词结果的统计以及词云等，我们会以柱状图，饼状图，线形图等多种方式展现出来。
+                                </div>
+                            </div>
+                            <!-- /. panel-body  -->
+                            
+                        </div>
+                        <!-- /. panel-default  -->
+                    </div>                      
+                </div>  
+				<!-- /. ROW  -->
+                     
+               
+                
+				<footer><p>All right reserved. Template by: WebThemez</p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="/assets/js/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <script src="/assets/js/custom-scripts.js"></script>
+    <script>
+            $(function(){
+            	$('.active-menu').removeClass('active-menu');
+            	$('.dashboard').addClass('active-menu');
+            });
+    </script>
+
+</body>
+
+</html>
