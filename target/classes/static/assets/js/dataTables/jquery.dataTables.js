@@ -11211,7 +11211,7 @@
 		 *    } );
 		 */
 		"asSorting": [ 'asc', 'desc' ],
-	
+
 	
 		/**
 		 * Enable or disable filtering on the data in this column.

@@ -172,7 +172,6 @@ public class UserServiceImpl implements UserService{
 		if(!user.getPassword().equalsIgnoreCase(password))
 		{
 			map.put("result", "error");
-			System.out.println(password);
 		}
 			
 		else

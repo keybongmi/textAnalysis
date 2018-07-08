@@ -90,7 +90,9 @@
     	
     	<script>
             $(function(){
-            	$('#dataTables-example').dataTable();
+            	$('#dataTables-example').dataTable({
+            		"order": [ 0, "desc" ]
+            	});
             	$('.active-menu').removeClass('active-menu');
             	$('.tasks').addClass('active-menu');
             });

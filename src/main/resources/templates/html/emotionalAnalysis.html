@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Dream</title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="/assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+    
+        <!--/. NAV TOP  -->
+        <div th:include="header :: header"></div>
+        <!-- /. NAV SIDE  -->
+        <div th:include="sidebar :: sidebar"></div>
+        
+        <div id="page-wrapper">
+           <div id="page-inner-table">
+			    <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                           	 情感分析
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+
+                
+
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-footer back-footer-blue">
+                                    	上传情感分析文本
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>Text area</label>
+                                            <textarea class="form-control" rows="3" id="File2" name="File2"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                               <!--  <div class="panel-footer">
+                                    
+                                </div> -->
+                            </div>
+                        </div> 
+
+
+						<div class="col-md-12">
+							<div class="panel panel-primary">
+		                        
+		                        <div class="panel-body" style="margin-left:42%;float:left">
+		                            <button class="btn btn-primary btn-lg" onclick="">
+		                              	Finish
+		                            </button>
+		                        </div>
+		                    </div>
+	                     </div>
+                        
+					
+				 		<footer><p>All right reserved.</p></footer>
+				</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/js/createProject.js"></script>
+    <script src="/js/jquery.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="/assets/js/custom-scripts.js"></script>
+    <script  type="text/javascript">
+            $(function(){
+            	$('.active-menu').removeClass('active-menu');
+            	$('.heartcjj').addClass('active-menu');
+            });
+    </script>
+
+    
+   
+</body>
+
+
+</html>

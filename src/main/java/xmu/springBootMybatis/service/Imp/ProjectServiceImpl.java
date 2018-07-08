@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -146,17 +147,12 @@ public class ProjectServiceImpl implements ProjectService{
 	/*
 	 * 下载文件
 	 * */
-	
     public String uploadFile(MultipartFile file,String projectName,long userId) throws IOException {  
      
         String directory = createDirectory(projectName,userId);            //设置文件保存路径   
         File tempFile = new File(directory, String.valueOf(file.getOriginalFilename()));  
         
         file.transferTo(tempFile);  
-        
-//        //获取压缩包的后缀
-//        String fileName = file.getOriginalFilename();
-//        String fileType = fileName.substring(fileName.length()-3, fileName.length());
         
         
 		//根据后缀名解压缩文件
@@ -247,62 +243,6 @@ public class ProjectServiceImpl implements ProjectService{
 			map.put("saveResult","fail");//表示存储文件成功
 		return map;
     }
-
-	/**
-	 * 用户选择分类和聚类算法以及是否进行数据分析，把结果存到数据库中
-	 * @return Map<String, String> 
-	 */
-	@Override
-	public Map<String, String> updateProjectAnotherMethod(boolean chooseNode, boolean KNN, boolean SVM,
-			boolean Linear_programming, boolean Deep_learning, boolean Knowledge, boolean Kmeans,long projectId,
-   		 String SVM_c,
-   		 String SVM_toler,
-   		 String SVM_max,
-   		 String SVM_select,
-   		 String Kmeans_class) {
-		// TODO Auto-generated method stub
-		Map<String, String> map = new HashMap<>();
-		
-		String classification_algorithm = "";
-		String clustering_algorithm = "";
-		
-		//根据用户的选择，将用户选中的分类算法保存到数据库中
-		if(KNN == true)
-			classification_algorithm = classification_algorithm+"1,";
-		
-		if(SVM == true)
-			classification_algorithm = classification_algorithm+"2,";
-		
-		if(Linear_programming == true)
-			classification_algorithm = classification_algorithm+"3,";
-		
-		if(Deep_learning == true)
-			classification_algorithm = classification_algorithm+"4,";
-		
-		if(Knowledge == true)
-			classification_algorithm = classification_algorithm+"5,";
-		
-		classification_algorithm = classification_algorithm.substring(0,classification_algorithm.length()-1);
-		
-		//根据用户的选择，将用户选中的聚类算法保存到数据库中
-		if(Kmeans == true) {
-			clustering_algorithm = clustering_algorithm+"1,";
-			clustering_algorithm = clustering_algorithm.substring(0,clustering_algorithm.length()-1);
-		}
-
-		String Kmeans_value = Kmeans_class;
-		String SVM_value = SVM_c+","+SVM_toler+","+SVM_max+","+SVM_select;
-		
-		int result = projectMapper.updateProjectAnotherMethod(chooseNode,classification_algorithm,clustering_algorithm,projectId,Kmeans_value,SVM_value);
-		
-		if(result!=0) {
-			map.put("saveResult","success");//表示更新文件成功
-		}
-		else
-			map.put("saveResult","fail");//表示更新文件失败
-		
-		return map;
-	}
 	
 	public Map<String,Object> getProjectData(long projectId) {
 		
@@ -329,12 +269,14 @@ public class ProjectServiceImpl implements ProjectService{
 			wordSegmentations = projectWordSegmentation.split(",");
 			try {
 				map.put("wordSegmentation", getWordSegmentResult(wordSegmentations,project_location));
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+		//分词结束修改数据库
+		updateProjectStatusHalfFinish(projectId);
 		
 		//获得项目所用的分类算法
 		String classification = project.getClassification_algorithm();
@@ -368,7 +310,7 @@ public class ProjectServiceImpl implements ProjectService{
 		else {
 			map.put("statistical", "false");
 		}
-		
+		updateProjectStatusFinish(projectId);
 		return map;
 	}
 	
@@ -647,8 +589,6 @@ public class ProjectServiceImpl implements ProjectService{
 		File[] files = f.listFiles();
 		
 		String file = files[0].getAbsolutePath();
-		System.out.println(file);
-		System.out.println("hahah");
 		String fileName = files[0].getName();
 		String fileType = fileName.substring(fileName.length()-3, fileName.length());
     	
@@ -668,6 +608,7 @@ public class ProjectServiceImpl implements ProjectService{
         //调用分词工具进行分词
         try {
 			asyncTaskService.wordSegmentation(projectId);
+			projectMapper.changeFinishOrNotHalfFinish(projectId);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -728,5 +669,88 @@ public class ProjectServiceImpl implements ProjectService{
 		}
     	
     }
+
+	/**
+	 * 用户选择分类和聚类算法以及是否进行数据分析，把结果存到数据库中
+	 * @return Map<String, String> 
+	 */
+	@Override
+	public Map<String, String> updateProjectAnotherMethod(boolean chooseNode, boolean KNN, boolean KNN_knoledge,
+			boolean SVM, boolean SVM_knowledge, boolean Linear_programming, boolean Deep_learning, boolean Kmeans,
+			boolean Kmeans_knowledge, long projectId, String SVM_c, String SVM_toler, String SVM_max, String SVM_select,
+			String Linear_c, String Linear_toler, String Linear_max, String Kmeans_class, String Kmeans_knowledge_class) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<>();
+		
+		String classification_algorithm = "";
+		String clustering_algorithm = "";
+		String Kmeans_value = "";
+		String SVM_value = "" ;
+		String linear_regression_value = "";
+		String Kmeans_knowledge_value = "";
+		
+		//根据用户的选择，将用户选中的分类算法保存到数据库中
+		if(KNN == true)
+			classification_algorithm = classification_algorithm+"1,";
+		
+		if(SVM == true) {
+			classification_algorithm = classification_algorithm+"2,";
+			SVM_value =  SVM_c+","+SVM_toler+","+SVM_max+","+SVM_select;
+		}
+			
+		
+		if(Linear_programming == true) {
+			classification_algorithm = classification_algorithm+"3,";
+			linear_regression_value = Linear_c + "," + Linear_toler + "," + Linear_max;
+		}
+			
+		
+		if(Deep_learning == true)
+			classification_algorithm = classification_algorithm+"4,";
+		
+		if(KNN_knoledge == true)
+			classification_algorithm = classification_algorithm+"5,";
+		
+		if(SVM_knowledge == true)
+			classification_algorithm = classification_algorithm+"6,";
+		
+		classification_algorithm = classification_algorithm.substring(0,classification_algorithm.length()-1);
+		
+		//根据用户的选择，将用户选中的聚类算法保存到数据库中
+		if(Kmeans == true) {
+			clustering_algorithm = clustering_algorithm+"1,";
+			Kmeans_value = Kmeans_class;
+		}
+		
+		//根据用户的选择，将用户选中的聚类算法保存到数据库中
+		if(Kmeans_knowledge == true) {
+			clustering_algorithm = clustering_algorithm+"2,";
+			Kmeans_knowledge_value = Kmeans_knowledge_class;
+		}
+		
+		clustering_algorithm = clustering_algorithm.substring(0,clustering_algorithm.length()-1);
+
+		
+		int result = projectMapper.updateProjectAnotherMethod(chooseNode,classification_algorithm,clustering_algorithm,
+				projectId,Kmeans_value,SVM_value,linear_regression_value,Kmeans_knowledge_value);
+		
+		
+		if(result!=0) {
+			map.put("saveResult","success");//表示更新文件成功
+		}
+		else
+			map.put("saveResult","fail");//表示更新文件失败
+		
+		return map;
+	}
+	
+	public void changeFinishOrNotHalfFinish(long projectId) {
+		projectMapper.changeFinishOrNotHalfFinish(projectId);
+	}
+	
+	public void changeFinishOrNotFinish(long projectId) {
+		projectMapper.changeFinishOrNotFinish(projectId);
+	}
 	
 }

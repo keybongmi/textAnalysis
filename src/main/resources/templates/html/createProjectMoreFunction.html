@@ -52,10 +52,10 @@
                                             <div class="form-group">
 	                                            <label>是否进行词性分析 </label>
 	                                            <label class="radio-inline">
-	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked="">Yes
+	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked="">No
 	                                            </label>
 	                                            <label class="radio-inline">
-	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">No
+	                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Yes
 	                                            </label>
 	                             
                                        		 </div>
@@ -79,59 +79,77 @@
 	                                                </label>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="checkbox">
+                                            	<div  >
+	                                                <label>
+	                                                    <input type="checkbox" id="KNN_knowledge" name="KNN_knowledge" value="" >KNN based on knowledge graph
+	                                                </label>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="checkbox">
                                             	<div style="float:left">
 	                                                <label>
-	                                                    <input type="checkbox" id="SVM" name="SVM" value="" onclick="SVM()">SVM
+	                                                    <input type="checkbox" id="SVM" name="SVM" value="" onclick="SVM()">SVM 
 	                                                </label>
                                                 </div>
                                                  <div style="margin-left:10%;display:none" id="SVM_value">
 	                                                <label>
-	                                                    <input  id="SVM_c" name="SVM_c" value=""  placeHolder="c" style="width:14%">
+	                                                    <input  id="SVM_c" name="SVM_c" value=""  placeHolder="c" style="width:7%">
 	                                                	&nbsp
-	                                                    <input  id="SVM_toler" name="SVM_toler" value=""  placeHolder="toler" style="width:14%">
+	                                                    <input  id="SVM_toler" name="SVM_toler" value=""  placeHolder="toler" style="width:10%">
 	                                                    &nbsp
-	                                                    <input  id="SVM_max" name="SVM_max" value=""  placeHolder="max_Iterations" style="width:14%">
+	                                                    <input  id="SVM_max" name="SVM_max" value=""  placeHolder="max_Iterations" style="width:20%">
 	                                                    &nbsp
 	                                                    <select id="SVM_select" name="SVM_select" style="width:14%" >
+	                                                    	<option></option>
 			                                                <option>linear</option>
 			                                                <option>rbf</option>
 			                                                <option>poly</option>
 			                                            </select>
 			                                            <input  id="SVM_test" name="SVM_test" value="" style="width:14%;display:none">
+			                                            <button id="reset" name="reset" >
+			                                            	重置
+			                                            </button>
 	                                                </label>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="checkbox">
+                                            	<div style="float:left">
+	                                                <label>
+	                                                    <input type="checkbox" id="SVM_knowledge" name="SVM_knowledge" value="">SVM based on knowledge graph
+	                                                </label>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="checkbox">
 	                                            <div style="float:left">
 		                                            <label>
 	                                                    <input type="checkbox" id="Linear_programming" name="Linear_programming" onclick="Linear_programming()">Linear regression
 	                                                </label>
 	                                            </div>
-	                                            <div style="margin-left:10%;display:none" id="Linear_value">
+	                                            <div style="margin-left:30%;display:none" id="Linear_value">
 	                                                <label>
-	                                                    <input  id="Linear_c" name="Linear_c" value=""  placeHolder="c" style="width:14%">
+	                                                    <input  id="Linear_c" name="Linear_c" value=""  placeHolder="c" style="width:7%">
 	                                                	&nbsp
-	                                                    <input  id="Linear_toler" name="Linear_toler" value=""  placeHolder="toler" style="width:14%">
+	                                                    <input  id="Linear_toler" name="Linear_toler" value=""  placeHolder="toler" style="width:10%">
 	                                                    &nbsp
-	                                                    <input  id="Linear_max" name="Linear_max" value=""  placeHolder="max_Iterations" style="width:14%">
+	                                                    <input  id="Linear_max" name="Linear_max" value=""  placeHolder="max_Iterations" style="width:30%">
 	                                                </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="form-group-1">
-                                        	<div class="checkbox">
+                                  
+                                            
+                                            <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" id="Deep_learning" name="Deep_learning" value="">Deep learning
                                                 </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" id="Knowledge" name="Knowledge" value="">Knowledge graph based method
-                                                </label>
-                                            </div>
-                                         </div>
+                                        </div>
+                                        
+                                        
                                 	</div>
                                <!--  <div class="panel-footer">
                                     
@@ -150,18 +168,30 @@
                                             <div class="checkbox">
 	                                            <div style="float:left">
 		                                            <label>
-	                                                    <input type="checkbox" id="Kmeans" name="Kmeans" value="" onclick="Kmeans()">Kmeans
+	                                                    <input type="checkbox" id="Kmeans" name="Kmeans" value="" onclick="Kmeans()" >Kmeans
 	                                                </label>
 	                                            </div>
 	                                            
-	                                            <div style="margin-left:10%;display:none;" id="Kmeans_value">
+	                                            <div style="margin-left:30%;display:none;" id="Kmeans_value">
 	                                                <label> 
-	                                                    <input  id="Kmeans_class" name="Kmeans_class" value=""  placeHolder="class" style="width:50px">
+	                                                    <input  id="Kmeans_class" name="Kmeans_class" value=""  placeHolder="class" style="width:30%">
 	                                                </label>  
                                                 </div>
                                             </div>
-                                          
-                                          
+                                            
+                                            <div class="checkbox">
+	                                            <div style="float:left">
+		                                            <label>
+	                                                    <input type="checkbox" id="Kmeans_knowledge" name="Kmeans_knowledge" value="" onclick="Kmeans_knowledge()">Kmeans based on knowledge graph
+	                                                </label>
+	                                            </div>
+	                                            
+	                                            <div style="margin-left:115%;display:none;" id="Kmeans_knowledge_value">
+	                                                <label> 
+	                                                    <input  id="Kmeans_knowledge_class" name="Kmeans_knowledge_class" value=""  placeHolder="class" style="width:50px">
+	                                                </label>  
+                                                </div>
+                                            </div>
                                         </div>
                                 </div>
                             </div>

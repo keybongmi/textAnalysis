@@ -29,6 +29,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/install_software/jee-oxygen/workplace/textAnalysis/IKAnalyzer-5.0.jar"/>
+	<classpathentry kind="lib" path="IKAnalyzer-5.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

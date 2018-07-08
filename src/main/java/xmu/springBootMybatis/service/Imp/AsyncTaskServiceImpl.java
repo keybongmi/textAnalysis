@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
 import xmu.springBootMybatis.entity.Project;
 import xmu.springBootMybatis.mapper.ProjectMapper;
 import xmu.springBootMybatis.service.AsyncTaskService;
@@ -16,6 +16,8 @@ import xmu.springBootMybatis.tools.HanlpTest;
 import xmu.springBootMybatis.tools.IkTest;
 import xmu.springBootMybatis.tools.JiebaTest;
 import xmu.springBootMybatis.tools.SmartcnTest;
+
+
 
 @Service
 public class AsyncTaskServiceImpl implements AsyncTaskService{
@@ -48,6 +50,9 @@ public class AsyncTaskServiceImpl implements AsyncTaskService{
 		//先进行分词
 		try {
 			wordSegmentation(i);
+			
+			//分完词之后修改状态,修改为半完成的状态
+			projectMapper.changeFinishOrNotHalfFinish(i);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,15 +65,15 @@ public class AsyncTaskServiceImpl implements AsyncTaskService{
 		String method = "";
 		
 		//项目未执行完毕
-		if(finish_or_not == 0) {
+		if(finish_or_not == 1) {
 			
 			//获取文件存储路径
 			String path = project.getProject_location();
 			
-			//获取要执行的分类和聚类函数
+			//获取要执行的分类函数
 			method = getClassMethod(project);
 			
-			//获取是否需要进行统计分析
+			//获取要执行的聚类函数
 			method = getClusterMethod(method,project);
 			
 			//判断是否需要进行统计分析
@@ -183,7 +188,7 @@ public class AsyncTaskServiceImpl implements AsyncTaskService{
 			getDataFromPath(tempPath,temp,methodName);	
 			
 		}
-		projectMapper.changeFinishOrNotFinish(i);
+		
 		//返回结果
 		return "true";
 	}

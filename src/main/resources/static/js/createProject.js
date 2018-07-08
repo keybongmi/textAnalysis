@@ -126,7 +126,6 @@ function ifItIsTxtOrRar(obj){
 
 function Finish(){
 
-
 	var formData = new FormData();
 	var chooseNode;
 	
@@ -137,16 +136,20 @@ function Finish(){
 	}
 	
 	if(chooseNode == "option1")
-		formData.append("chooseNode",true);
-	else
 		formData.append("chooseNode",false);
+	else
+		formData.append("chooseNode",true);
 	
 	
 	var KNN = $("#KNN").prop('checked');
 	formData.append("KNN",KNN);
 	
+	var KNN_knowledge = $("#KNN_knowledge").prop('checked');
+	formData.append("KNN_knowledge",KNN_knowledge);
+	
 	var SVM = $("#SVM").prop('checked');
 	formData.append("SVM",SVM);
+	
 	//如果SVM算法被选择,则赋输入值
 	if(SVM){
 		//如果SVM_c有输入值
@@ -154,25 +157,25 @@ function Finish(){
 			formData.append("SVM_c",$("#SVM_c").val());
 		}
 		else{
-			formData.append("SVM_c","0");
+			formData.append("SVM_c","200");
 		}
 			
 		if($("#SVM_toler").val()){
 			formData.append("SVM_toler",$("#SVM_toler").val());
 		}
 		else{
-			formData.append("SVM_toler","0");
+			formData.append("SVM_toler","0.0001");
 		}
 		
 		if($("#SVM_max").val()){
 			formData.append("SVM_max",$("#SVM_max").val());
 		}
 		else{
-			formData.append("SVM_max","0");
+			formData.append("SVM_max","1000");
 		}
 		
 		if($("#SVM_select").val()=="linear"){
-			formData.append("SVM_select",$("#SVM_test").val());
+			formData.append("SVM_select","linear_"+$("#SVM_test").val());
 		}
 		else if($("#SVM_select").val()=="rbf"){
 			formData.append("SVM_select","rbf_"+$("#SVM_test").val());
@@ -183,7 +186,7 @@ function Finish(){
 		else{
 			formData.append("SVM_select","0");
 		}
-	}//如果SVM算法没被选择,则赋默认值
+	}//如果SVM算法没被选择,则全部都赋值为0
 	else{
 		formData.append("SVM_c","0");
 		formData.append("SVM_toler","0");
@@ -191,35 +194,85 @@ function Finish(){
 		formData.append("SVM_select","0");
 	}
 	
+	var SVM_knowledge = $("#SVM_knowledge").prop('checked');
+	formData.append("SVM_knowledge",SVM_knowledge);
+	
 	var Linear_programming = $("#Linear_programming").prop('checked');
 	formData.append("Linear_programming",Linear_programming);
+	
+	if(Linear_programming){
+		//如果Linear_c有输入值,则赋值
+		if($("#Linear_c").val()){
+			formData.append("Linear_c",$("#Linear_c").val());
+		}
+		else{
+			formData.append("Linear_c","200");
+		}
+		
+		if($("Linear_toler").val()){
+			formData.append("Linear_toler",$("#Linear_toler").val());
+		}
+		else{
+			formData.append("Linear_toler","0.0001");
+		}
+		
+		if($("Linear_max").val()){
+			formData.append("Linear_max",$("#Linear_max").val());
+		}
+		else{
+			formData.append("Linear_max","1000");
+		}
+	}
+	else{
+		formData.append("Linear_c","0");
+		formData.append("Linear_toler","0");
+		formData.append("Linear_max","0");
+	}
 	
 	var Deep_learning  =$("#Deep_learning").prop('checked');
 	formData.append("Deep_learning",Deep_learning);
 	
-	var Knowledge = $("#Knowledge").prop('checked');
-	formData.append("Knowledge",Knowledge);
-	
 	var Kmeans = $("#Kmeans").prop('checked');
 	formData.append("Kmeans",Kmeans);
 	
-	//如果KNN分类算法被选择,则赋输入值
+	//如果Kmeans分类算法被选择,则赋输入值
 	if(Kmeans){
-		//如果KNN_class有输入值,则赋值
+		//如果Kmeans_class有输入值,则赋值
 		if($("#Kmeans_class").val()){
 			formData.append("Kmeans_class",$("#Kmeans_class").val());
 		}
 		else{
-			formData.append("Kmeans_class","0");
+			formData.append("Kmeans_class","3");
 		}
 		
-	}//如果KNN算法没被选择，则赋默认值
+	}//如果Kmeans算法没被选择，则设置为0
 	else{
 		formData.append("Kmeans_class","0");
 	}
 	
+	var Kmeans_knowledge = $("#Kmeans_knowledge").prop('checked');
+	formData.append("Kmeans_knowledge",Kmeans_knowledge);
+	
+	//如果Kmeans分类算法被选择,则赋输入值
+	if(Kmeans_knowledge){
+		//如果Kmeans_class有输入值,则赋值
+		if($("#Kmeans_knowledge_class").val()){
+			formData.append("Kmeans_knowledge_class",$("#Kmeans_knowledge_class").val());
+		}
+		else{
+			formData.append("Kmeans_knowledge_class","3");
+		}
+		
+	}//如果Kmeans算法没被选择，则设置为0
+	else{
+		formData.append("Kmeans_knowledge_class","0");
+	}
+	
+	
 	var projectId= $("#field＿name").val();
 	formData.append("projectId",projectId);
+	
+	 console.log(formData);
 	
 	$.ajax({
 		
@@ -248,15 +301,27 @@ function Finish(){
 	});
 }
 
-//选中KNN的时候输入参数
+//选中Kmeans的时候输入参数
 function Kmeans(){
-	//KNN处于选中模块
+	//Kmeans处于选中模块
 	if($("#Kmeans").prop('checked')){
 		alert("请按照要求填写Kmeans参数");
 		$("#Kmeans_value").show();
 	}
 	else{
 		$("#Kmeans_value").hide();
+	}
+}
+
+//选中Kmeans_knowledge的时候输入参数
+function Kmeans_knowledge(){
+	//Kmeans_knowledge处于选中模块
+	if($("#Kmeans_knowledge").prop('checked')){
+		alert("请按照要求填写Kmeans参数");
+		$("#Kmeans_knowledge_value").show();
+	}
+	else{
+		$("#Kmeans_knowledge_value").hide();
 	}
 }
 
@@ -288,10 +353,16 @@ function Linear_programming(){
 }
 
 $("#SVM_select").change(function(){
-
 	$("#SVM_select").hide();
 	$("#SVM_test").attr('placeholder',$("#SVM_select").val());
 	$("#SVM_test").show();
+});
+
+$("#reset").click(function(){
+	$("#SVM_test").val("");
+	$("#SVM_test").hide();
+	$("#SVM_select").val("");
+	$("#SVM_select").show();
 });
 
 function checkProjectName(projectName){
@@ -300,28 +371,15 @@ function checkProjectName(projectName){
 		alert("请输入项目名称");
 		return false;
 	}
-	
 	return true;
 }
 
 function checkFile(){
 	//判断上传数据是不是为空
-	if(document.getElementById("File1").value=="" && document.getElementById("File2").value==""){
-		alert("请上传数据，或者输入数据");
-		return false;
-	}
-	
-	//判断有没有同时上传文件输入数据
-	if(document.getElementById("File1").value!="" && document.getElementById("File2").value!=""){
-		alert("您只能进行上传文件或者输入文本这两个操作中的一个");
+	if(document.getElementById("File1").value==""){
+		alert("请上传数据");
 		return false;
 	}
 	
 	return true;
 }
-
-//function test(){
-//	//alert("ddd");
-//	//$("#SVM_select").hide();
-//}
-

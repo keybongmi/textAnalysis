@@ -52,7 +52,8 @@ public class ProjectController {
 		
         ModelAndView mav = new ModelAndView();  
         mav.setViewName("html/finishTable"); 
-        List<Project> projects = projectService.getProjectByType(1, user.getId());
+        //其中0代表项目创建完成，当项目分词成功之后就变为1，当项目分类和聚类成功之后就变成2.
+        List<Project> projects = projectService.getProjectByType(2, user.getId());
 		mav.addObject("projects", projects);
         return mav;    
 	} 
@@ -105,7 +106,6 @@ public class ProjectController {
 			/*异步调用函数,解压缩文件分词工具进行分词*/
 			long projectId =Long.parseLong(map.get("projectId"));
 			projectService.dealFile(projectId);
-
 		}
 		
 		return map;    
@@ -157,22 +157,28 @@ public class ProjectController {
 	@ResponseBody
     public Map<String, String> createProjectMoreFunction(@RequestParam(value = "chooseNode") boolean chooseNode,
     		@RequestParam(value = "KNN") boolean KNN,
+    		@RequestParam(value = "KNN_knowledge") boolean KNN_knowledge,
     		@RequestParam(value = "SVM") boolean SVM,
+    		@RequestParam(value = "SVM_knowledge") boolean SVM_knowledge,
     		@RequestParam(value = "Linear_programming") boolean Linear_programming,
     		@RequestParam(value = "Deep_learning") boolean Deep_learning,
-    		@RequestParam(value = "Knowledge") boolean Knowledge,
     		@RequestParam(value = "Kmeans") boolean Kmeans,
+    		@RequestParam(value = "Kmeans_knowledge") boolean Kmeans_knowledge,
     		@RequestParam(value = "projectId") String projectId,
     		@RequestParam(value = "SVM_c") String SVM_c,
     		@RequestParam(value = "SVM_toler") String SVM_toler,
     		@RequestParam(value = "SVM_max") String SVM_max,
     		@RequestParam(value = "SVM_select") String SVM_select,
-    		@RequestParam(value = "Kmeans_class") String Kmeans_class){ 
+    		@RequestParam(value = "Linear_c") String Linear_c,
+    		@RequestParam(value = "Linear_toler") String Linear_toler,
+    		@RequestParam(value = "Linear_max") String Linear_max,
+    		@RequestParam(value = "Kmeans_class") String Kmeans_class,
+    		@RequestParam(value = "Kmeans_knowledge_class") String Kmeans_knowledge_class){ 
 		
 		long id = Long.parseLong(projectId);
 		Map<String, String> map = new HashMap<>();
-		map = projectService.updateProjectAnotherMethod(chooseNode,KNN,SVM,Linear_programming,Deep_learning,Knowledge,Kmeans,id,SVM_c,SVM_toler,SVM_max,SVM_select,
-				Kmeans_class);
+		map = projectService.updateProjectAnotherMethod(chooseNode,KNN,KNN_knowledge,SVM,SVM_knowledge,Linear_programming,Deep_learning,Kmeans,
+				Kmeans_knowledge,id,SVM_c,SVM_toler,SVM_max,SVM_select,Linear_c,Linear_toler,Linear_max,Kmeans_class,Kmeans_knowledge_class);
 		
 		/*异步调用函数，调用分类算法，聚类算法*/
 		projectService.dealMoreFunctionFile(id);

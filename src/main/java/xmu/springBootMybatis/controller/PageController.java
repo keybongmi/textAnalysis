@@ -28,6 +28,11 @@ public class PageController {
         return "html/createProject";    
 	}  
 	
+	@RequestMapping(value="/emotionalAnalysis") 
+    public String emotionalAnalysis(){    
+        return "html/emotionalAnalysis";    
+	}  
+	
 
 	
 	@RequestMapping(value="/adminFuction")

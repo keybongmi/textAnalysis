@@ -14,15 +14,15 @@ body {
 
 #overlay {  
     background: #000;  
-    filter: alpha(opacity=50); /* IEµÄÍ¸Ã÷¶È */  
-    opacity: 0.5;  /* Í¸Ã÷¶È */  
+    filter: alpha(opacity=50); /* IEï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½ */  
+    opacity: 0.5;  /* Í¸ï¿½ï¿½ï¿½ï¿½ */  
     display: none;  
     position: absolute;  
     top: 0px;  
     left: 0px;  
     width: 100%;  
     height: 100%;  
-    z-index: 100; /* ´Ë´¦µÄÍ¼²ãÒª´óÓÚÒ³Ãæ */  
+    z-index: 100; /* ï¿½Ë´ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ */  
     display:none;  
 }  
 
@@ -54,7 +54,7 @@ body {
     margin:10px 20px 10px 0px;
     background-color:transparent;
     padding:10px;
-    min-height:600px;
+    min-height:530px;
 }
 
 /*----------------------------------------------
@@ -435,7 +435,7 @@ line-height: 1.428571429;
      #page-wrapper{
                margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 600px;
+        min-height: 530px;
 		
     }
 	

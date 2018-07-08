@@ -21,6 +21,8 @@ public class Project implements Serializable{
 	private String clustering_algorithm;
 	private String Kmeans_value;
 	private String SVM_value;
+	private String linear_regression_value;
+	private String Kmeans_knowledge_value;
 	
 	
 	private long user_id;
@@ -102,5 +104,17 @@ public class Project implements Serializable{
 	}
 	public void setKmeans_value(String kmeans_value) {
 		Kmeans_value = kmeans_value;
+	}
+	public String getLinear_regression_value() {
+		return linear_regression_value;
+	}
+	public void setLinear_regression_value(String linear_regression_value) {
+		this.linear_regression_value = linear_regression_value;
+	}
+	public String getKmeans_knowledge_value() {
+		return Kmeans_knowledge_value;
+	}
+	public void setKmeans_knowledge_value(String kmeans_knowledge_value) {
+		Kmeans_knowledge_value = kmeans_knowledge_value;
 	}
 }

@@ -23,17 +23,23 @@ public interface ProjectService {
 	
 	public Map<String, String> updateProjectAnotherMethod( boolean chooseNode,
     		 boolean KNN,
+    		 boolean KNN_knoledge,
     		 boolean SVM,
+    		 boolean SVM_knowledge,
     		 boolean Linear_programming,
     		 boolean Deep_learning,
-    		 boolean Knowledge,
     		 boolean Kmeans,
+    		 boolean Kmeans_knowledge,
     		 long projectId,
     		 String SVM_c,
     		 String SVM_toler,
     		 String SVM_max,
     		 String SVM_select,
-    		 String KNN_class);
+    		 String Linear_c,
+    		 String Linear_toler,
+    		 String Linear_max,
+    		 String Kmeans_class,
+    		 String Kmeans_knowledge_class);
 	
 	public Map<String,Object> getProjectData(long projectId);
 	
@@ -46,4 +52,8 @@ public interface ProjectService {
 	public String dealMoreFunctionFile(long projectId);
 	
 	public String dealFile(long projectId);
+	
+	public void changeFinishOrNotHalfFinish(long projectId);
+	
+	public void changeFinishOrNotFinish(long projectId);
 }
